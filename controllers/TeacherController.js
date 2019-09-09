@@ -18,4 +18,8 @@ router.delete("/:id", (req, res) => {
     TeacherModel.deleteOne(req.params, res.callback)
     res.send(`Delete For Id ${req.params.id}`)
 })
+
+router.get("/teacherBy/:page",(req,res)=>{
+    TeacherModel.pagination(req,res.callback)
+})
 export default router

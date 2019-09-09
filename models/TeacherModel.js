@@ -5,7 +5,7 @@ export default {
      * @returns {number} that number, plus one.
      */
     search: async function(_query, callback) {
-        const teachers = await Teacher.find().exec()
+        const teachers = await Teacher.find({}).exec()
         callback(null, teachers)
     },
     getById(data, callback) {
@@ -24,26 +24,19 @@ export default {
         }).exec(callback)
     },
 
-    updateById: (data) => {
-        Teacher.findByIdAndUpdate(data.params.id, {
-            name: data.body.name, 
-            address: data.body.address,
-            email: data.body.email,
-            salary: data.body.salary
-        }, {new: true})
-        .then(teacher => {
-            if(!teacher) {
-                return res.status(404).send({
-                    message: "Data not found with id " + req.params.id
-                });
-            }
-            res.send(teacher);
-        }).catch(err => {
-            if(err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "Data not found with id " + req.params.id
-                });                
-            }
-        })
-    }
+    updateById: (data,callback) => {
+        Teacher.findByIdAndUpdate(data.params.id,data.body).exec(callback)
+        
+    },
+
+   pagination:async function(data,callback){
+       const resPerPage =2;
+       const page= data.params.page;
+
+       const teacher= await Teacher.find()
+       .skip((resPerPage * page) - resPerPage)
+       .limit(resPerPage)
+        .exec()
+        callback(null,teacher)
+   }
 }
