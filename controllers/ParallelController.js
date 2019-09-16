@@ -11,4 +11,8 @@ router.get("/lodash/loadashopt", (req, res) => {
     ParallelModel.lodashOperations(req.query, res.callback)
 })
 
+router.get("/async/abc", (req, res) => {
+    AsyncModel.async(req.params, res.callback)
+})
+
 export default router

@@ -74,6 +74,9 @@ search:  function(_query, callback)
                     let slice = _.slice(student, 2, 4);
                     console.log(slice);
 
+                    let sample = _.sample(student);
+                    console.log(sample);
+
                     student.forEach( (e) => {
 
                         if (_.isNumber(e)) {
@@ -99,9 +102,13 @@ search:  function(_query, callback)
                         var a,b;
                         const values = _.values(student);
                         console.log(values);
-                        const result = "keys :"+keys+ " values :"+values;
+                        //const result = "keys :"+keys+ " values :"+values;
+
+
                         //callback(null, chunk)
-                        callback(null, result)
+                        //callback(null, slice)
+                        callback(null, sample)
+                        //callback(null, result)
                     
                 }
             ],
