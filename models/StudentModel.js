@@ -10,10 +10,10 @@ export default {
         Student.aggregate([
             { $lookup:
                 {
-                   from: "teachers",
-                   localField: "teacher",
-                   foreignField: "_id",
-                   as: "teacher"
+                    from: "teachers",
+                    localField: "teacher",
+                    foreignField: "_id",
+                    as: "teacher"
                 }
             }
         ]).exec(callback)
@@ -24,27 +24,27 @@ export default {
     },
 
     getOne(data, callback) {
-        console.log("msg");
+
         Student.findOne({
             _id: data.id
             
          
         })
-       // .populate("teacher")
+        // .populate("teacher")
         //.exec(callback)
-       Student.aggregate([
-       {
-           $match: {_id:ObjectId(data.id)} 
-       },
-        { $lookup:
+        Student.aggregate([
             {
-               from: "teachers",
-               localField: "teacher",
-               foreignField: "_id",
-               as: "teacher"
+                $match: {_id:ObjectId(data.id)} 
+            },
+            { $lookup:
+            {
+                from: "teachers",
+                localField: "teacher",
+                foreignField: "_id",
+                as: "teacher"
             }
-        }
-    ]).exec(callback)
+            }
+        ]).exec(callback)
         
 
     },
