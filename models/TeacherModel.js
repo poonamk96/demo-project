@@ -16,27 +16,26 @@ export default {
     saveData: (data, callback) => {
         const teacher = new Teacher(data)
         teacher.save(callback)
-    },  
+    },
 
-    deleteOne:(data, callback) => {
+    deleteOne: (data, callback) => {
         Teacher.findByIdAndRemove({
             _id: data.id
         }).exec(callback)
     },
 
-    updateById: (data,callback) => {
-        Teacher.findByIdAndUpdate(data.params.id,data.body).exec(callback)
-        
+    updateById: (data, callback) => {
+        Teacher.findByIdAndUpdate(data.params.id, data.body).exec(callback)
     },
 
-   pagination:async function(data,callback){
-       const resPerPage =2;
-       const page= data.params.page;
+    pagination: async function(data, callback) {
+        const resPerPage = 2
+        const page = data.params.page
 
-       const teacher= await Teacher.find()
-       .skip((resPerPage * page) - resPerPage)
-       .limit(resPerPage)
-        .exec()
-        callback(null,teacher)
-   }
+        const teacher = await Teacher.find()
+            .skip(resPerPage * page - resPerPage)
+            .limit(resPerPage)
+            .exec()
+        callback(null, teacher)
+    }
 }
