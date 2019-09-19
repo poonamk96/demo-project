@@ -25,7 +25,9 @@ export default {
     },
 
     updateById: (data, callback) => {
-        Teacher.findByIdAndUpdate(data.params.id, data.body).exec(callback)
+        Teacher.findByIdAndUpdate(data.params.id, data.body, {
+            useFindAndModify: false
+        }).exec(callback)
     },
 
     pagination: async function(data, callback) {

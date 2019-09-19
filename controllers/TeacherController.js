@@ -11,12 +11,12 @@ router.post("/", (req, res) => {
 })
 router.put("/:id", (req, res) => {
     TeacherModel.updateById(req, res.callback)
-    res.send(`Update For Id ${req.params.id}`)
+    // res.send(`Update For Id ${req.params.id}`)
+    //console.log(res.statusCode)
 })
 
 router.delete("/:id", (req, res) => {
     TeacherModel.deleteOne(req.params, res.callback)
-    res.send(`Delete For Id ${req.params.id}`)
 })
 
 router.get("/teacherBy/:page", (req, res) => {
