@@ -13,7 +13,7 @@
                 "test": "mocha"
         },
         "dependencies": {
-                "lodash": "^4.17.15",
+                "lodash": "^4.17.19",
                 "wohlig-framework-core": "latest"
         },
         "devDependencies": {
